@@ -23,12 +23,15 @@ namespace VkMusicPlayer.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserToken {
             get {
                 return ((string)(this["UserToken"]));
+            }
+            set {
+                this["UserToken"] = value;
             }
         }
     }

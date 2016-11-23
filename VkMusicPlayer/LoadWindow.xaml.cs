@@ -37,6 +37,9 @@ namespace VkMusicPlayer
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
             
+            MainWindow authorize = new MainWindow();
+            authorize.Show();
+            this.Close(); 
         }
     }
 }
