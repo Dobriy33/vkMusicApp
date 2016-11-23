@@ -1,0 +1,14 @@
+﻿<Window x:Class="VkMusicPlayer.LoadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VkMusicPlayer"
+        mc:Ignorable="d"
+        Title="Окно загрузки" Height="600" Width="800">
+    <Grid>
+        <Image Margin="275,100,267,244" Source="LogoImage.jpg" Width="250"/>
+        <Label x:Name="lblHello" Content="Здравствуйте! Требуется авторизация" HorizontalAlignment="Left" Margin="275,389,0,0" VerticalAlignment="Top" Width="250" FontWeight="Bold" TextOptions.TextHintingMode="Fixed" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnAuth" Content="Авторизоваться" HorizontalAlignment="Center" Margin="340,465,332,74" VerticalAlignment="Center" Width="120" Height="30" Click="btnAuth_Click"/>
+    </Grid>
+</Window>
