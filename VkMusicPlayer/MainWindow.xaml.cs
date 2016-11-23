@@ -23,6 +23,8 @@ namespace VkMusicPlayer
         public MainWindow()
         {
             InitializeComponent();
+            VKApplication app = new VKApplication();
+            AuthWebBrowser.Navigate(app.connectString);
         }
     }
 }
