@@ -27,14 +27,15 @@ namespace VkMusicPlayer
             InitializeComponent();
             
             AuthWebBrowser.Navigate(VKApplication.connectString);
-            
+
         }
 
         private void AuthWebBrowser_LoadCompleted(object sender, NavigationEventArgs e)
         {
+            
             try
             {
-                if (e.Uri.ToString().IndexOf("access_token") != -1)
+                if(e.Uri.ToString().IndexOf("access_token") != -1) 
                 {
                     Regex myReg = new Regex(@"(?<name>[\w\d\x5f]+)=(?<value>[^\x26\s]+)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                     foreach (Match m in myReg.Matches(e.Uri.ToString()))
@@ -42,6 +43,12 @@ namespace VkMusicPlayer
                         if (m.Groups["name"].Value == "access_token")
                         {
                             VkApi.userToken = m.Groups["value"].Value;
+                            VkApi.SaveToken();
+                            MessageBox.Show("Авторизация пройдена успешно");
+                            Task.Delay(5000);
+                            AudioList audioList = new AudioList();
+                            audioList.Show();
+                            this.Close();
                         }
                     }
                 }
@@ -52,12 +59,7 @@ namespace VkMusicPlayer
             {
                 MessageBox.Show(ex.Message);
             }
-            VkApi.SaveToken();
-            MessageBox.Show("Авторизация пройдена успешно");
-            Task.Delay(5000);
-            AudioList audioList = new AudioList();
-            audioList.Show();
-            this.Close();
+            
         }
     }
 }

@@ -9,7 +9,7 @@ namespace VkMusicPlayer
     public static class VKApplication
     {
         private static int appId = 5743605;
-        private static int scope = 65544; // маска доступа 8(audio)+65536(offline)
-        public  static string connectString = String.Format("https://oauth.vk.com/authorize?client_id={0}&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope={1}+offline&response_type=token&v=5.60", appId, scope);
+        private static string scope = "audio,offline"; // маска доступа 8(audio)+65536(offline) = 65544
+        public  static string connectString = String.Format("https://oauth.vk.com/authorize?client_id={0}&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope={1}&response_type=token&v=5.60", appId, scope);
     }
 }

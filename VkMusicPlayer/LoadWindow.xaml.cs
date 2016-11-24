@@ -22,7 +22,7 @@ namespace VkMusicPlayer
         public LoadWindow()
         {
             InitializeComponent();
-            if (Properties.Settings.Default.UserToken.Length == 0)
+            if (Properties.Settings.Default.UserToken == "")
             {
                 lblHello.Content = "Здравствуйте! Требуется авторизация.";
                 btnAuth.IsEnabled = true;
