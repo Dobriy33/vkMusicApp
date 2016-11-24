@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace VkMusicPlayer
 {
@@ -22,6 +23,13 @@ namespace VkMusicPlayer
         public AudioList()
         {
             InitializeComponent();
+            var xml = new XmlDocument();
+            xml.Load(VkApi.audioGetRequest);
+            foreach (XmlNode noda in xml.DocumentElement)
+            {
+                AudioListBox.Items.Add(string.Format("{0} = {1}", noda.Name, noda.InnerText));
+            }
+
         }
     }
 }

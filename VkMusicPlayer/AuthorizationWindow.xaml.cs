@@ -54,6 +54,10 @@ namespace VkMusicPlayer
             }
             VkApi.SaveToken();
             MessageBox.Show("Авторизация пройдена успешно");
+            Task.Delay(5000);
+            AudioList audioList = new AudioList();
+            audioList.Show();
+            this.Close();
         }
     }
 }

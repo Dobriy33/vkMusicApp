@@ -10,9 +10,11 @@ namespace VkMusicPlayer
     {
         public static string userToken {get; set; }
         public static string requestString = String.Format("{0}", userToken);
+        public static string audioGetRequest;
         public static void SaveToken()
         {
             Properties.Settings.Default.UserToken = userToken;
+            audioGetRequest = String.Format("https://api.vk.com/method/audio.get.xml?access_token={0}&v=5.60", userToken);
         }
     }
 }

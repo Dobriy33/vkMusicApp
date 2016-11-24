@@ -31,6 +31,10 @@ namespace VkMusicPlayer
             {
                 lblHello.Content = "Загружаем список аудиозаписей";
                 btnAuth.IsEnabled = false;
+                Task.Delay(3000);
+                AudioList audioList = new AudioList();
+                audioList.Show();
+                this.Close();
             }
         }
 
