@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 using System.IO;
+using Newtonsoft.Json;
+using System.Web;
 
 namespace VkMusicPlayer
 {
@@ -23,46 +25,14 @@ namespace VkMusicPlayer
     {
         public AudioList()
         {
-            try
-            {
-                InitializeComponent();
-                var xml = new XmlDocument();
-                xml.Load(VkApi.audioGetRequest); //загрузить xml документ по запросу
-                StringBuilder output = new StringBuilder();
-                XmlReader reader = XmlReader.Create(xml.OuterXml);
-                XmlWriterSettings ws = new XmlWriterSettings();
-                ws.Indent = true;
-                XmlWriter writer = XmlWriter.Create(output, ws);
-                while (reader.Read())
-                {
-                    switch (reader.NodeType)
-                    {
-                        case XmlNodeType.Element:
-                            writer.WriteStartElement(reader.Name);
-                            break;
-                        case XmlNodeType.Text:
-                            writer.WriteString(reader.Value);
-                            break;
-                        case XmlNodeType.XmlDeclaration:
-                        case XmlNodeType.ProcessingInstruction:
-                            writer.WriteProcessingInstruction(reader.Name, reader.Value);
-                            break;
-                        case XmlNodeType.Comment:
-                            writer.WriteComment(reader.Value);
-                            break;
-                        case XmlNodeType.EndElement:
-                            writer.WriteFullEndElement();
-                            break;
-                    }
-                }
             
+                List <Audio> audioList = new List<Audio>();
 
-            /*foreach (XmlNode noda in xml.DocumentElement)
+            foreach (Audio record in audioList)
             {
-                AudioListBox.Items.Add(string.Format("{0} = {1}", noda.Name, noda.InnerText));
-            }*/
-
-            txtTest.Text = output.ToString();
+                AudioListBox.Items.Add(string.Format("{0} - {1} {2}/n {3}", record.artist, record.title, record.duration,record.url));
+            }
+            
             }
             catch (Exception ex)
             {
