@@ -14,7 +14,7 @@ namespace VkMusicPlayer
         public static void SaveToken()
         {
             Properties.Settings.Default.UserToken = userToken;
-            audioGetRequest = String.Format("https://api.vk.com/method/audio.get.xml?access_token={0}&v=5.60", userToken);
+            audioGetRequest = String.Format("https://api.vk.com/method/audio.getCount.xml?access_token={0}&v=5.60", userToken);
         }
     }
 }

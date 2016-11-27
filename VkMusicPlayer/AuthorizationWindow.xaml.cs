@@ -57,7 +57,7 @@ namespace VkMusicPlayer
             VkApi.userToken = urlParams.Get("access_token");*/
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Source,ex.Message);
             }
             
         }

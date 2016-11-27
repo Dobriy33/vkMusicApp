@@ -68,6 +68,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Audio.cs" />
     <Compile Include="AudioList.xaml.cs">
       <DependentUpon>AudioList.xaml</DependentUpon>
     </Compile>
