@@ -25,19 +25,42 @@ namespace VkMusicPlayer
     {
         public AudioList()
         {
-            
-                List <Audio> audioList = new List<Audio>();
-
-            foreach (Audio record in audioList)
+            try
             {
-                AudioListBox.Items.Add(string.Format("{0} - {1} {2}/n {3}", record.artist, record.title, record.duration,record.url));
-            }
-            
+                InitializeComponent();
+                WebBrowser web = new WebBrowser();
+                web.Navigate(VkApi.audioGetRequest);
+                web.LoadCompleted += Web_LoadCompleted;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Web_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            try
+            {
+                string response = e.WebResponse.ToString();
+                List<Audio> audioList = new List<Audio>();
+                int count = Convert.ToInt32(JsonConvert.DeserializeObject(response));
+                for (int i = 0; i < count; i++)
+                {
+                    var recrd = JsonConvert.DeserializeObject<Audio>(response);
+                    audioList.Add(recrd);
+                    
+                }
+                foreach (Audio record in audioList)
+                {
+                    AudioListBox.Items.Add(string.Format("{0} - {1} {2}/n {3}", record.artist, record.title, record.duration, record.url));
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

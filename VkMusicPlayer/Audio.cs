@@ -10,6 +10,8 @@ namespace VkMusicPlayer
     [JsonObject]
     class Audio
     {
+        [JsonProperty("count")]
+        public static int count;
         // исполнитель
         [JsonProperty("artist")]
         public string artist { get; set; }
