@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VkMusicPlayer
 {
@@ -14,7 +17,13 @@ namespace VkMusicPlayer
         public static void SaveToken()
         {
             Properties.Settings.Default.UserToken = userToken;
-            audioGetRequest = String.Format("https://api.vk.com/method/audio.getCount.xml?access_token={0}&v=5.60", userToken);
+            audioGetRequest = String.Format("https://api.vk.com/method/audio.get?access_token={0}&v=5.60", userToken);
+        }
+        public static JObject GetAudioInfo()
+        {
+            WebClient web = new WebClient();
+            string response = web.DownloadString(VkApi.audioGetRequest);
+            return JObject.Parse(response);
         }
     }
 }

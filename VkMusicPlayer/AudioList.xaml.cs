@@ -14,7 +14,9 @@ using System.Windows.Shapes;
 using System.Xml;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Windows.Media;
 
 namespace VkMusicPlayer
 {
@@ -28,21 +30,21 @@ namespace VkMusicPlayer
             try
             {
                 InitializeComponent();
-                WebClient web = new WebClient();
-                string response = web.DownloadString(VkApi.audioGetRequest);
                 List<Audio> audioList = new List<Audio>();
-                int count = Convert.ToInt32(JsonConvert.DeserializeObject(response));
-                for (int i = 0; i < count; i++)
+                var jObj = VkApi.GetAudioInfo();
+                IList<JToken> results = jObj["response"]["items"].Children().ToList();
+                foreach (JToken result in results)
                 {
-                    var recrd = JsonConvert.DeserializeObject<Audio>(response);
+                    Audio recrd = JsonConvert.DeserializeObject<Audio>(result.ToString());
                     audioList.Add(recrd);
 
                 }
                 foreach (Audio record in audioList)
                 {
-                    AudioListBox.Items.Add(string.Format("{0} - {1} {2}/n {3}", record.artist, record.title, record.duration, record.url));
+                    AudioListBox.Items.Add(string.Format("{0} - {1} {2}", record.artist, record.title, record.duration));
 
                 }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
