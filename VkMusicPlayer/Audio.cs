@@ -34,22 +34,20 @@ namespace VkMusicPlayer
             {
                 
                 int s = Convert.ToInt32(value);
-                int seconds, minutes, hours;
-                hours = s / 3600;
-                minutes = (s - hours * 3600) / 60;
-                seconds = s - hours * 3600 - minutes * 60;
-
-                if (minutes == 0)
+                var ts = TimeSpan.FromSeconds(s);
+                string sec = (ts.Seconds < 10 ? "0" + ts.Seconds.ToString() : ts.Seconds.ToString());
+                
+                if (ts.Minutes == 0)
                 {
-                    _duration = String.Format("0:{0}", seconds);
+                    _duration = String.Format("0:{0}", sec);
                 }
 
-                else if (hours == 0)
+                else if (ts.Hours == 0)
                 {
-                    _duration = String.Format("{0}:{1}", minutes, seconds);
+                    _duration = String.Format("{0}:{1}", ts.Minutes, sec);
                 }
 
-                else { _duration = String.Format("{0}:{1}:{2}", hours, minutes, seconds); } // hh:mm:ss*/
+                else { _duration = String.Format("{0}:{1}:{2}", ts.Hours, ts.Minutes, sec); } // hh:mm:ss*/
             }
         }
         // ссылка на запись

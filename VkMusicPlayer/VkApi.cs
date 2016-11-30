@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace VkMusicPlayer
 {
@@ -22,7 +23,7 @@ namespace VkMusicPlayer
         public static JObject GetAudioInfo()
         {
             WebClient web = new WebClient();
-            string response = web.DownloadString(VkApi.audioGetRequest);
+            string response = web.DownloadString(VkApi.audioGetRequest); //ответ - документ в формате JSON
             return JObject.Parse(response);
         }
     }

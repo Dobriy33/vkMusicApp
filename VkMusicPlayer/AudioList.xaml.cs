@@ -30,8 +30,10 @@ namespace VkMusicPlayer
             try
             {
                 InitializeComponent();
+
                 List<Audio> audioList = new List<Audio>();
                 var jObj = VkApi.GetAudioInfo();
+
                 IList<JToken> results = jObj["response"]["items"].Children().ToList();
                 foreach (JToken result in results)
                 {
@@ -42,8 +44,9 @@ namespace VkMusicPlayer
                 foreach (Audio record in audioList)
                 {
                     AudioListBox.Items.Add(string.Format("{0} - {1} {2}", record.artist, record.title, record.duration));
-
                 }
+
+
             }
             catch (Exception ex)
             {
