@@ -16,7 +16,6 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net;
-using System.Windows.Media;
 
 namespace VkMusicPlayer
 {
@@ -54,6 +53,20 @@ namespace VkMusicPlayer
             }
         }
 
+        private void MediaPlay(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MediaPause(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MediaStop(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 

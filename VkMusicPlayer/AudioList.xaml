@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="AudioList" Height="600" Width="800">
     <Grid>
-        <ListBox x:Name="AudioListBox" HorizontalAlignment="Left" Height="460" Margin="20,20,0,0" VerticalAlignment="Top" Width="540"/>
+        <ListBox x:Name="AudioListBox" HorizontalAlignment="Left" Height="380" Margin="20,20,0,0" VerticalAlignment="Top" Width="540"/>
+        <MediaElement x:Name="player"="Left" Height="135" Margin="20,415,0,0" VerticalAlignment="Top" Width="540" Visibility="Hidden"/>
+        <Button Content="Stop" Click ="MediaStop" HorizontalAlignment="Left" Margin="220,450,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
+        <Button Content="Pause" Click="MediaPause" HorizontalAlignment="Left" Margin="120,450,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
+        <Button Content="Play" Click="MediaPlay" HorizontalAlignment="Left" Margin="20,450,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
+        <Slider  HorizontalAlignment="Left" Margin="20,507,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Volume" Margin="20,525,0,0" Width="115" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14"/>
 
     </Grid>
 </Window>
