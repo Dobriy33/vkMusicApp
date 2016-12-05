@@ -45,7 +45,6 @@ namespace VkMusicPlayer
                             VkApi.userToken = m.Groups["value"].Value;
                             VkApi.SaveToken();
                             MessageBox.Show("Авторизация пройдена успешно");
-                            Task.Delay(5000);
                             AudioList audioList = new AudioList();
                             audioList.Show();
                             this.Close();
@@ -53,8 +52,6 @@ namespace VkMusicPlayer
                     }
                 }
             }
-             /*var urlParams = HttpUtility.ParseQueryString(e.Uri.Fragment.Substring(1));
-            VkApi.userToken = urlParams.Get("access_token");*/
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Source,ex.Message);

@@ -7,13 +7,15 @@
         mc:Ignorable="d"
         Title="AudioList" Height="600" Width="800">
     <Grid>
-        <ListBox x:Name="AudioListBox" HorizontalAlignment="Left" Height="380" Margin="20,20,0,0" VerticalAlignment="Top" Width="540" SelectionChanged="AudioListBox_SelectionChanged" MouseDoubleClick="AudioListBox_MouseDoubleClick"/>
-        <MediaElement x:Name="player" HorizontalAlignment="Left" Height="135" Margin="20,415,0,0" VerticalAlignment="Top" Width="540" Visibility="Hidden" LoadedBehavior="Manual"/>
+        <ListBox x:Name="AudioListBox" HorizontalAlignment="Left" Height="380" Margin="20,20,0,0" VerticalAlignment="Top" Width="620" SelectionChanged="AudioListBox_SelectionChanged" MouseDoubleClick="AudioListBox_MouseDoubleClick"/>
+        <MediaElement x:Name="player" HorizontalAlignment="Left" Height="135" Margin="20,415,0,0" VerticalAlignment="Top" Width="540" Visibility="Hidden" LoadedBehavior="Manual" MediaEnded="player_MediaEnded"/>
         <Button Content="Stop" Click ="MediaStop" HorizontalAlignment="Left" Margin="220,450,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
         <Button Content="Pause" Click="MediaPause" HorizontalAlignment="Left" Margin="120,450,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
         <Button Content="Play" Click="MediaPlay" HorizontalAlignment="Left" Margin="20,450,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
         <Slider x:Name="sldrVolume" HorizontalAlignment="Left" Margin="20,507,0,0" VerticalAlignment="Top" Width="120" ValueChanged="Slider_ValueChanged"/>
         <Label Content="Volume" Margin="20,525,0,0" Width="115" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14"/>
+        <Label x:Name="txtCurrentItemName" Content="" HorizontalAlignment="Left" Margin="20,414,0,0" VerticalAlignment="Top" Width="620" BorderBrush="Black" Background="Transparent">
+        </Label>
 
     </Grid>
 </Window>
