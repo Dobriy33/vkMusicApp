@@ -29,23 +29,22 @@ namespace VkMusicPlayer
             try
             {
                 InitializeComponent();
+                /* List<Audio> audioList = new List<Audio>();
+                 var jObj = VkApi.GetAudioInfo();
 
-                List<Audio> audioList = new List<Audio>();
-                var jObj = VkApi.GetAudioInfo();
+                 IList<JToken> results = jObj["response"]["items"].Children().ToList();
+                 foreach (JToken result in results)
+                 {
+                     Audio recrd = JsonConvert.DeserializeObject<Audio>(result.ToString());
+                     audioList.Add(recrd);
 
-                IList<JToken> results = jObj["response"]["items"].Children().ToList();
-                foreach (JToken result in results)
-                {
-                    Audio recrd = JsonConvert.DeserializeObject<Audio>(result.ToString());
-                    audioList.Add(recrd);
-
-                }
-                foreach (Audio record in audioList)
+                 }*/
+                Audio.getAudioList();
+                foreach (Audio record in Audio.audioList)
                 {
                     AudioListBox.Items.Add(string.Format("{0} - {1} {2}", record.artist, record.title, record.duration));
                 }
-
-
+                
             }
             catch (Exception ex)
             {
@@ -55,17 +54,39 @@ namespace VkMusicPlayer
 
         private void MediaPlay(object sender, RoutedEventArgs e)
         {
-            
+            player.Play();
         }
 
         private void MediaPause(object sender, RoutedEventArgs e)
         {
-
+            player.Pause();
         }
 
         private void MediaStop(object sender, RoutedEventArgs e)
         {
+            player.Stop();
+        }
 
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            player.Volume = sldrVolume.Value/10; // значение громкости для плеера: от 0.0 до 1.0
+        }
+
+        private void AudioListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            player.Stop(); // остановить если проигрывается
+            Audio currentItem = Audio.audioList[AudioListBox.SelectedIndex]; //индекс текущей позиции
+            Uri currentItemUri = new Uri(currentItem.url); // url адрес для текущего элемента списка 
+            player.Source = currentItemUri;
+        }
+
+        private void AudioListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            player.Stop(); // остановить если проигрывается
+            Audio currentItem = Audio.audioList[AudioListBox.SelectedIndex]; //индекс текущей позиции
+            Uri currentItemUri = new Uri(currentItem.url); // url адрес для текущего элемента списка 
+            player.Source = currentItemUri;
+            player.Play();
         }
     }
 }

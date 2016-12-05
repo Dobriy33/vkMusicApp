@@ -16,6 +16,7 @@ namespace VkMusicPlayer
         private string _title;
         private string _duration;
         private string _url;
+        public static List<Audio> audioList = new List<Audio> { };
         // исполнитель
         [JsonProperty("artist")]
         public string artist { get; set; }
@@ -54,6 +55,7 @@ namespace VkMusicPlayer
         [JsonProperty("url")]
         public string url { get; set; }
 
+
         public Audio(string Artist, string Title, string Duration, string Url)
         {
             artist = Artist;
@@ -61,6 +63,19 @@ namespace VkMusicPlayer
             duration = Duration;
             url = Url;
         }
-        
+
+        //получение списка аудиозаписей
+        public static void getAudioList() //получение списка аудиозаписей
+        {
+            var jObj = VkApi.GetAudioInfo();
+
+            IList<JToken> results = jObj["response"]["items"].Children().ToList();
+            foreach (JToken result in results)
+            {
+                Audio recrd = JsonConvert.DeserializeObject<Audio>(result.ToString());
+                audioList.Add(recrd);
+
+            }
+        }
     }
 }
